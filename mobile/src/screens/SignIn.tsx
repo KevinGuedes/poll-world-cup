@@ -1,9 +1,9 @@
 import { Fontisto } from '@expo/vector-icons'
 import { Center, Icon, Text } from 'native-base'
-
-import Logo from '../assets/logo.svg'
 import { Button } from '../components/Button'
 import { useAuth } from '../hooks/useAuth'
+
+import Logo from '../assets/logo.svg'
 
 export function SignIn() {
   const { signIn } = useAuth()

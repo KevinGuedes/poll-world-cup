@@ -7,24 +7,24 @@ import usersAvatar from '../assets/users-avatar.png'
 import { api } from '../lib/axios'
 
 interface HomeProps {
-  poolsCount: number
+  pollsCount: number
   guessesCount: number
   usersCount: number
 }
 
 export default function Home({
-  poolsCount,
+  pollsCount,
   guessesCount,
   usersCount,
 }: HomeProps) {
-  const [poolTitle, setPoolTitle] = useState('')
+  const [pollTitle, setPollTitle] = useState('')
 
-  async function createPool(event: FormEvent) {
+  async function createPoll(event: FormEvent) {
     event.preventDefault()
 
     try {
-      const response = await api.post('/pools', {
-        title: poolTitle,
+      const response = await api.post('/polls', {
+        title: pollTitle,
       })
 
       const { code } = response.data
@@ -33,7 +33,7 @@ export default function Home({
         'Bolão criado com sucesso, o código foi copiado para a área de transferência'
       )
 
-      setPoolTitle('')
+      setPollTitle('')
     } catch (err) {
       console.log(err)
       alert('Falha ao criar bolão, tente novamente depois')
@@ -55,14 +55,14 @@ export default function Home({
           </strong>
         </div>
 
-        <form className="mt-10 flex gap-2" onSubmit={createPool}>
+        <form className="mt-10 flex gap-2" onSubmit={createPoll}>
           <input
             type="text"
             required
             placeholder="Qual nome do seu bolão?"
             className="flex-1 px-6 py-4 rounded bg-gray-800 border border-gray-600 text-sm text-gray-100"
-            value={poolTitle}
-            onChange={event => setPoolTitle(event.target.value)}
+            value={pollTitle}
+            onChange={event => setPollTitle(event.target.value)}
           />
           <button
             type="submit"
@@ -81,7 +81,7 @@ export default function Home({
           <div className="flex items-center gap-6">
             <Image src={check} alt="" />
             <div className="flex flex-col">
-              <span className="font-bold text-2xl">+{poolsCount}</span>
+              <span className="font-bold text-2xl">+{pollsCount}</span>
               <span>Bolões criados</span>
             </div>
           </div>
@@ -99,6 +99,7 @@ export default function Home({
       </main>
       <Image
         quality={100}
+        priority
         src={appPreviewImg}
         alt="Dois celulares exibindo uma prévia da aplicação móvel do NLW Copa"
       />
@@ -107,16 +108,16 @@ export default function Home({
 }
 
 export const getServerSideProps = async () => {
-  const [poolsCountResponse, guessesCountResponse, usersCountResponse] =
+  const [pollsCountResponse, guessesCountResponse, usersCountResponse] =
     await Promise.all([
-      api.get('pools/count'),
+      api.get('polls/count'),
       api.get('guesses/count'),
       api.get('users/count'),
     ])
 
   return {
     props: {
-      poolsCount: poolsCountResponse.data.count,
+      pollsCount: pollsCountResponse.data.count,
       guessesCount: guessesCountResponse.data.count,
       usersCount: usersCountResponse.data.count,
     },

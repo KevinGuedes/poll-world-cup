@@ -11,6 +11,7 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto'
+import { Polls } from './src/screens/Polls'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,7 +28,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <SignIn /> : <Loading />}
+        {fontsLoaded ? <Polls /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
