@@ -7,8 +7,8 @@ async function main() {
     data: {
       name: 'Jhon Doe',
       email: 'john.doe@gmail.com',
-      avatarUrl: 'https://github.com/kevinguedes.png',
-      googleId: '113147203096036162080',
+      avatarUrl: 'https://github.com/diego3g.png',
+      googleId: '214324343333333333333',
     },
   })
 

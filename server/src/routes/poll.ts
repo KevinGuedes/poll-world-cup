@@ -53,11 +53,11 @@ export async function pollRoutes(fastify: FastifyInstance) {
       onRequest: [authenticate],
     },
     async (request, reply) => {
-      const joinPoolBody = z.object({
+      const joinPollBody = z.object({
         code: z.string(),
       })
 
-      const { code } = joinPoolBody.parse(request.body)
+      const { code } = joinPollBody.parse(request.body)
 
       const poll = await prisma.poll.findUnique({
         where: {
@@ -112,7 +112,7 @@ export async function pollRoutes(fastify: FastifyInstance) {
       onRequest: [authenticate],
     },
     async request => {
-      const pools = await prisma.poll.findMany({
+      const polls = await prisma.poll.findMany({
         where: {
           participants: {
             some: {
@@ -147,7 +147,7 @@ export async function pollRoutes(fastify: FastifyInstance) {
         },
       })
 
-      return { pools }
+      return { polls }
     }
   )
 
