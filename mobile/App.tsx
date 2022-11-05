@@ -1,7 +1,7 @@
 import { NativeBaseProvider, StatusBar } from 'native-base'
 import { Loading } from './src/components/Loading'
 import { AuthContextProvider } from './src/contexts/AuthContext'
-import { SignIn } from './src/screens/SignIn'
+import { Routes } from './src/routes'
 
 import { THEME } from './src/styles/theme'
 
@@ -11,7 +11,6 @@ import {
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto'
-import { Polls } from './src/screens/Polls'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +27,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <Polls /> : <Loading />}
+        {fontsLoaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
