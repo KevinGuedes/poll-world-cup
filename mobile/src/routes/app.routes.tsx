@@ -41,7 +41,7 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name="pools"
+        name="polls"
         component={Polls}
         options={{
           tabBarIcon: ({ color }) => <SoccerBall color={color} size={size} />,
